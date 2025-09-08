@@ -2,7 +2,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { X, Clock, User, Download, Share } from "lucide-react";
+import { X, Clock, User, Download, Share, Users, Palette, Mail } from "lucide-react";
 
 interface Script {
   id: string;
@@ -13,6 +13,9 @@ interface Script {
   description: string;
   image: string;
   content: string;
+  verdict: string;
+  logline: string;
+  synopsis: string;
 }
 
 interface ScriptModalProps {
@@ -66,15 +69,39 @@ const ScriptModal = ({ script, isOpen, onClose }: ScriptModalProps) => {
             </Button>
           </div>
 
+          {/* Script Details */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+            <div>
+              <h4 className="font-semibold text-primary mb-2">Verdict</h4>
+              <p className="text-foreground/90 text-lg">{script.verdict}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-primary mb-2">Log Line</h4>
+              <p className="text-foreground/90 italic">{script.logline}</p>
+            </div>
+            <div className="md:col-span-2">
+              <h4 className="font-semibold text-primary mb-2">Synopsis</h4>
+              <p className="text-foreground/90 leading-relaxed">{script.synopsis}</p>
+            </div>
+          </div>
+
           {/* Action Buttons */}
-          <div className="flex gap-3 pt-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-6">
             <Button className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
               <Download className="w-4 h-4 mr-2" />
-              Download Script
+              Download
             </Button>
             <Button variant="outline" className="border-border/50 hover:bg-primary hover:text-primary-foreground">
-              <Share className="w-4 h-4 mr-2" />
-              Share
+              <Users className="w-4 h-4 mr-2" />
+              Characters
+            </Button>
+            <Button variant="outline" className="border-border/50 hover:bg-primary hover:text-primary-foreground">
+              <Palette className="w-4 h-4 mr-2" />
+              Mood Board
+            </Button>
+            <Button variant="outline" className="border-border/50 hover:bg-primary hover:text-primary-foreground">
+              <Mail className="w-4 h-4 mr-2" />
+              Contact Director
             </Button>
           </div>
         </DialogHeader>

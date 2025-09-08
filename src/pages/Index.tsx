@@ -18,17 +18,23 @@ interface Script {
   description: string;
   image: string;
   content: string;
+  verdict: string;
+  logline: string;
+  synopsis: string;
 }
 
 const mockScripts: Script[] = [
   {
     id: "1",
     title: "Midnight in the Alley",
-    genre: "Noir Thriller",
+    genre: "Thriller",
     duration: "120 min",
     author: "Sarah Mitchell",
     description: "A detective's pursuit of truth leads through the darkest corners of the city, where every shadow hides a secret and every witness has something to lose.",
     image: noirImage,
+    verdict: "⭐⭐⭐⭐⭐ (5/5 stars)",
+    logline: "A detective races against time to solve a murder that could expose a conspiracy reaching the highest levels of power.",
+    synopsis: "When Detective Jack Stone discovers a body in a rain-soaked alley, he uncovers a web of corruption that threatens to destroy everything he believes in. As he delves deeper into the case, Stone must navigate a dangerous world of lies, betrayal, and murder, where the line between justice and revenge becomes increasingly blurred.",
     content: `FADE IN:
 
 EXT. RAIN-SOAKED ALLEY - NIGHT
@@ -64,11 +70,14 @@ The fluorescent lights buzz like dying insects. JACK sits at his desk, studying 
   {
     id: "2",
     title: "Coffee Shop Serenade",
-    genre: "Romantic Comedy",
+    genre: "Romance",
     duration: "95 min",
     author: "Michael Chen",
     description: "When a barista with dreams of Broadway meets a music producer hiding his identity, their daily coffee ritual becomes the soundtrack to an unexpected love story.",
     image: romanceImage,
+    verdict: "⭐⭐⭐⭐ (4/5 stars)",
+    logline: "A struggling Broadway hopeful and a disguised music producer find love over lattes in this charming romantic comedy.",
+    synopsis: "Lily Martinez pours her heart into every cup of coffee she serves while dreaming of Broadway stardom. When mysterious regular Alex Thompson starts visiting her café, neither expects their daily encounters to brew into something deeper. But Alex is hiding a secret that could change everything - he's actually a successful music producer who could make Lily's dreams come true.",
     content: `FADE IN:
 
 INT. COZY CORNER CAFÉ - MORNING
@@ -107,11 +116,14 @@ ALEX takes a sip, his eyes widening in pleasant surprise.`
   {
     id: "3",
     title: "Neural Highway",
-    genre: "Sci-Fi Thriller",
+    genre: "Sci-Fi",
     duration: "135 min",
     author: "David Kim",
     description: "In 2087, a memory hacker discovers that erasing traumatic experiences comes with a price: the elimination of the capacity for human empathy.",
     image: scifiImage,
+    verdict: "⭐⭐⭐⭐⭐ (5/5 stars)",
+    logline: "A memory deletion procedure goes wrong, threatening to eliminate humanity's capacity for empathy in this dystopian thriller.",
+    synopsis: "In the year 2087, Dr. Elena Vasquez operates an underground clinic where she helps people erase their most traumatic memories. But when a routine procedure malfunctions, she discovers that the technology she's been using has a devastating side effect: it's slowly erasing humanity's ability to feel empathy. Now she must race against time to find a cure before society collapses into emotionless chaos.",
     content: `FADE IN:
 
 EXT. NEW TOKYO - 2087 - NIGHT
@@ -149,11 +161,14 @@ What have I done?`
   {
     id: "4",
     title: "The Last Garden",
-    genre: "Period Drama",
+    genre: "Drama",
     duration: "148 min",
     author: "Elizabeth Hartwell",
     description: "Set in 1920s England, a widowed estate owner fights to preserve her ancestral home and gardens while navigating the changing social landscape of post-war Britain.",
     image: dramaImage,
+    verdict: "⭐⭐⭐⭐ (4/5 stars)",
+    logline: "A widowed aristocrat fights to save her ancestral estate and gardens in post-WWI England while confronting changing social norms.",
+    synopsis: "Lady Margaret Hartwell faces the greatest challenge of her life when mounting debts threaten to force the sale of her family's 400-year-old estate. Set against the backdrop of 1920s England, she must navigate a rapidly changing world while fighting to preserve not just her home, but the legacy of generations. With the help of an unlikely ally, she discovers that sometimes letting go of the past is the only way to secure the future.",
     content: `FADE IN:
 
 EXT. HARTWELL MANOR - DAWN - 1924

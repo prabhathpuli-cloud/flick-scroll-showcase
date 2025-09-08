@@ -6,27 +6,27 @@
 
 @layer base {
   :root {
-    /* Cinematic Color Palette */
-    --background: 218 25% 8%;
-    --foreground: 210 12% 92%;
+    /* Red & Gold Color Palette */
+    --background: 0 0% 5%;
+    --foreground: 43 15% 95%;
 
-    --card: 220 22% 12%;
-    --card-foreground: 210 12% 92%;
+    --card: 0 15% 8%;
+    --card-foreground: 43 15% 95%;
 
-    --popover: 220 22% 12%;
-    --popover-foreground: 210 12% 92%;
+    --popover: 0 15% 8%;
+    --popover-foreground: 43 15% 95%;
 
-    --primary: 43 96% 60%;
-    --primary-foreground: 218 25% 8%;
+    --primary: 0 75% 55%;
+    --primary-foreground: 43 95% 95%;
 
-    --secondary: 220 18% 16%;
-    --secondary-foreground: 210 12% 92%;
+    --secondary: 0 20% 12%;
+    --secondary-foreground: 43 15% 95%;
 
-    --muted: 220 18% 16%;
-    --muted-foreground: 215 16% 65%;
+    --muted: 0 20% 12%;
+    --muted-foreground: 43 10% 70%;
 
-    --accent: 43 86% 70%;
-    --accent-foreground: 218 25% 8%;
+    --accent: 43 85% 65%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 12% 92%;
@@ -37,16 +37,16 @@
 
     --radius: 0.75rem;
 
-    /* Cinematic Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(43 96% 60%), hsl(43 86% 70%));
-    --gradient-cinematic: linear-gradient(180deg, hsl(218 25% 8%), hsl(220 22% 12%));
-    --gradient-card: linear-gradient(145deg, hsl(220 22% 12%), hsl(220 18% 16%));
-    --gradient-glow: radial-gradient(circle at center, hsl(43 96% 60% / 0.15), transparent 70%);
+    /* Red & Gold Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(0 75% 55%), hsl(43 85% 65%));
+    --gradient-cinematic: linear-gradient(180deg, hsl(0 0% 5%), hsl(0 15% 8%));
+    --gradient-card: linear-gradient(145deg, hsl(0 15% 8%), hsl(0 20% 12%));
+    --gradient-glow: radial-gradient(circle at center, hsl(0 75% 55% / 0.15), transparent 70%);
 
-    /* Cinematic Shadows */
-    --shadow-cinematic: 0 25px 50px -12px hsl(218 25% 8% / 0.8);
-    --shadow-glow: 0 0 40px hsl(43 96% 60% / 0.3);
-    --shadow-card: 0 8px 32px hsl(218 25% 8% / 0.6);
+    /* Red & Gold Shadows */
+    --shadow-cinematic: 0 25px 50px -12px hsl(0 0% 5% / 0.8);
+    --shadow-glow: 0 0 40px hsl(0 75% 55% / 0.3);
+    --shadow-card: 0 8px 32px hsl(0 0% 5% / 0.6);
 
     /* Typography Scale */
     --font-cinematic: 'Playfair Display', serif;

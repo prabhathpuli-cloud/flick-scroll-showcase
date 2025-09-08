@@ -136,6 +136,14 @@ export default {
           "50%": {
             transform: "translateY(-4px)"
           }
+        },
+        "globe-spin": {
+          "0%": {
+            transform: "rotateY(0deg) rotateX(10deg)"
+          },
+          "100%": {
+            transform: "rotateY(360deg) rotateX(10deg)"
+          }
         }
       },
       animation: {
@@ -145,6 +153,7 @@ export default {
         "slide-in": "slide-in 0.8s ease-out",
         "scale-glow": "scale-glow 2s ease-in-out infinite",
         "float": "float 3s ease-in-out infinite",
+        "globe-spin": "globe-spin 8s linear infinite",
       },
     },
   },

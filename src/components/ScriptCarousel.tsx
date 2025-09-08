@@ -22,6 +22,15 @@ interface ScriptCarouselProps {
 const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Group scripts by genre
+  const groupedScripts = scripts.reduce((acc, script) => {
+    if (!acc[script.genre]) {
+      acc[script.genre] = [];
+    }
+    acc[script.genre].push(script);
+    return acc;
+  }, {} as Record<string, Script[]>);
+
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const scrollAmount = 340; // Card width + gap
@@ -72,28 +81,37 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
           </div>
         </div>
 
-        {/* Scripts Carousel */}
-        <div 
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-          }}
-        >
-          {scripts.map((script, index) => (
+        {/* Scripts by Genre */}
+        {Object.entries(groupedScripts).map(([genre, genreScripts]) => (
+          <div key={genre} className="mb-16">
+            <h3 className="font-cinematic text-2xl font-bold text-primary mb-6">
+              {genre}
+            </h3>
             <div 
-              key={script.id} 
-              className="animate-slide-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 perspective-1000"
+              style={{
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+              }}
             >
-              <ScriptCard
-                {...script}
-                onClick={() => onScriptSelect(script)}
-              />
+              {genreScripts.map((script, index) => (
+                <div 
+                  key={script.id} 
+                  className="animate-globe-spin hover:animate-none transition-all duration-500 hover:scale-105"
+                  style={{ 
+                    animationDelay: `${index * 200}ms`,
+                    transformStyle: 'preserve-3d'
+                  }}
+                >
+                  <ScriptCard
+                    {...script}
+                    onClick={() => onScriptSelect(script)}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -42,13 +42,6 @@ const Hero = () => {
           Explore Scripts
         </Button>
 
-        {/* Floating Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-float">
-          <ChevronDown 
-            className="w-8 h-8 text-primary cursor-pointer opacity-70 hover:opacity-100 transition-opacity" 
-            onClick={scrollToScripts}
-          />
-        </div>
       </div>
     </section>
   );
