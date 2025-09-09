@@ -4,10 +4,10 @@ import ScriptCarousel from "@/components/ScriptCarousel";
 import ScriptModal from "@/components/ScriptModal";
 
 // Import script images
-import noirImage from "@/assets/script-noir.jpg";
-import romanceImage from "@/assets/script-romance.jpg";
-import scifiImage from "@/assets/script-scifi.jpg";
-import dramaImage from "@/assets/script-drama.jpg";
+import thrillerImage from "@/assets/thriller-poster.jpg";
+import romanceImage from "@/assets/romance-poster.jpg";
+import scifiImage from "@/assets/scifi-poster.jpg";
+import dramaImage from "@/assets/drama-poster.jpg";
 
 interface Script {
   id: string;
@@ -32,7 +32,7 @@ const mockScripts: Script[] = [
     duration: "120 min",
     author: "Sarah Mitchell",
     description: "A detective's pursuit of truth leads through the darkest corners of the city, where every shadow hides a secret and every witness has something to lose.",
-    image: noirImage,
+    image: thrillerImage,
     verdict: "⭐⭐⭐⭐⭐ (5/5 stars)",
     logline: "A detective races against time to solve a murder that could expose a conspiracy reaching the highest levels of power.",
     synopsis: "When Detective Jack Stone discovers a body in a rain-soaked alley, he uncovers a web of corruption that threatens to destroy everything he believes in. As he delves deeper into the case, Stone must navigate a dangerous world of lies, betrayal, and murder, where the line between justice and revenge becomes increasingly blurred.",
@@ -45,7 +45,7 @@ const mockScripts: Script[] = [
     duration: "105 min",
     author: "Marcus Webb",
     description: "A small town sheriff discovers that the recent string of murders coincides with lunar cycles, leading to a terrifying revelation about the killer's identity.",
-    image: noirImage,
+    image: thrillerImage,
     verdict: "⭐⭐⭐⭐ (4/5 stars)",
     logline: "A sheriff's investigation into lunar-timed murders reveals a supernatural threat in his quiet town.",
     synopsis: "Sheriff Tom Bradley thought he'd seen everything in his 20 years of law enforcement. But when bodies start appearing every full moon, he must confront the possibility that some legends are more than just stories.",
@@ -58,7 +58,7 @@ const mockScripts: Script[] = [
     duration: "95 min",
     author: "Isabella Rodriguez",
     description: "A priest becomes the target of a killer who uses confessions to select victims, forcing him to break sacred vows to save lives.",
-    image: noirImage,
+    image: thrillerImage,
     verdict: "⭐⭐⭐⭐⭐ (5/5 stars)",
     logline: "A priest must violate the sacred seal of confession to stop a serial killer who hunts his parishioners.",
     synopsis: "Father Michael Santos has kept the secrets of his congregation for decades. But when those secrets become a hunting ground for a methodical killer, he faces an impossible choice between divine law and human life.",
@@ -71,7 +71,7 @@ const mockScripts: Script[] = [
     duration: "112 min",
     author: "Alex Chang",
     description: "A cybersecurity expert discovers that a deceased hacker's consciousness has been uploaded to the internet, seeking revenge on those who betrayed him.",
-    image: noirImage,
+    image: thrillerImage,
     verdict: "⭐⭐⭐⭐ (4/5 stars)",
     logline: "A dead hacker's digital ghost haunts the internet, targeting his former associates through their connected devices.",
     synopsis: "When cyber-specialist Maya Chen investigates a series of impossible hacks, she uncovers evidence that her former colleague, who died in a suspicious accident, may have found a way to survive in cyberspace.",
@@ -84,7 +84,7 @@ const mockScripts: Script[] = [
     duration: "128 min",
     author: "Rachel Green",
     description: "A neuroscientist realizes someone is stealing memories from her patients, leaving them with fabricated lives and dangerous gaps in their past.",
-    image: noirImage,
+    image: thrillerImage,
     verdict: "⭐⭐⭐⭐⭐ (5/5 stars)",
     logline: "A doctor discovers her patients' memories are being harvested and replaced with false ones.",
     synopsis: "Dr. Elena Vasquez notices her amnesia patients are exhibiting identical behavioral patterns. Her investigation reveals a black market for stolen memories, with her own past becoming the next target.",
@@ -97,7 +97,7 @@ const mockScripts: Script[] = [
     duration: "118 min",
     author: "David Thompson",
     description: "A sound engineer discovers that certain frequencies can trigger suppressed memories, leading him into a conspiracy involving mind control experiments.",
-    image: noirImage,
+    image: thrillerImage,
     verdict: "⭐⭐⭐⭐ (4/5 stars)",
     logline: "A sound engineer uncovers a sonic conspiracy that can control human memory and behavior.",
     synopsis: "Sound engineer Jake Morrison's experiments with frequency therapy accidentally unlock hidden memories in his subjects, revealing they were all victims of the same covert program.",
@@ -110,7 +110,7 @@ const mockScripts: Script[] = [
     duration: "134 min",
     author: "Sophia Chen",
     description: "A therapist discovers her patients are being manipulated by someone with access to their deepest fears and traumas.",
-    image: noirImage,
+    image: thrillerImage,
     verdict: "⭐⭐⭐⭐⭐ (5/5 stars)",
     logline: "A therapist realizes her patients are being controlled through their psychological vulnerabilities.",
     synopsis: "Dr. Sarah Collins notices her patients exhibiting behaviors that mirror their therapy sessions. Someone is using their disclosed traumas as weapons against them.",
@@ -123,7 +123,7 @@ const mockScripts: Script[] = [
     duration: "101 min",
     author: "Michael Torres",
     description: "A woman discovers that her reflection in mirrors shows a different life, and the other version is trying to take over her reality.",
-    image: noirImage,
+    image: thrillerImage,
     verdict: "⭐⭐⭐⭐ (4/5 stars)",
     logline: "A woman's mirror reflection reveals an alternate life that's slowly bleeding into her reality.",
     synopsis: "Emma Walsh begins seeing glimpses of another life in her reflection. As the visions intensify, she realizes the other Emma is not just a reflection, but a rival trying to replace her.",
@@ -136,7 +136,7 @@ const mockScripts: Script[] = [
     duration: "109 min",
     author: "Laura Kim",
     description: "A deaf lip-reader witnesses a murder but realizes the killer knows sign language and is sending her threatening messages only she can understand.",
-    image: noirImage,
+    image: thrillerImage,
     verdict: "⭐⭐⭐⭐⭐ (5/5 stars)",
     logline: "A deaf witness to murder receives threats in sign language that only she can see.",
     synopsis: "Maya Torres uses her lip-reading skills to help police solve crimes. But when she witnesses a murder, the killer begins stalking her through silent, signed threats that make her the only witness who truly understands the danger.",
@@ -149,7 +149,7 @@ const mockScripts: Script[] = [
     duration: "122 min",
     author: "Robert Hayes",
     description: "An archaeologist uncovers evidence that a serial killer has been using historical dig sites to hide bodies for decades.",
-    image: noirImage,
+    image: thrillerImage,
     verdict: "⭐⭐⭐⭐ (4/5 stars)",
     logline: "An archaeologist discovers that historical dig sites have been used as modern burial grounds.",
     synopsis: "Dr. James Wright's archaeological survey reveals human remains that are far too recent. His investigation uncovers a pattern of murders spanning decades, with the killer using his knowledge of archaeology to hide evidence in plain sight.",
