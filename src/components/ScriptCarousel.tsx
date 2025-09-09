@@ -86,7 +86,7 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
           <div key={genre} className="mb-16">
             <div 
               ref={scrollRef}
-              className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 mb-6 animate-globe-spin"
+              className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 mb-6"
               style={{
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
@@ -96,7 +96,7 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
               {genreScripts.map((script) => (
                 <div 
                   key={script.id} 
-                  className="transition-all duration-500 hover:scale-105 hover:shadow-glow"
+                  className="flex-shrink-0 transition-all duration-300 hover:scale-105 hover:shadow-glow"
                 >
                   <ScriptCard
                     {...script}
