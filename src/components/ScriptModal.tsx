@@ -59,14 +59,6 @@ const ScriptModal = ({ script, isOpen, onClose }: ScriptModalProps) => {
               </p>
             </div>
             
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              className="text-muted-foreground hover:text-foreground"
-            >
-              <X className="w-5 h-5" />
-            </Button>
           </div>
 
           {/* Script Details */}
