@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useState } from "react";
 import ScriptCard from "./ScriptCard";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -20,7 +20,7 @@ interface ScriptCarouselProps {
 }
 
 const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const [rotationAngle, setRotationAngle] = useState(0);
 
   // Group scripts by genre
   const groupedScripts = scripts.reduce((acc, script) => {
@@ -31,19 +31,13 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
     return acc;
   }, {} as Record<string, Script[]>);
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const scrollAmount = 340; // Card width + gap
-      const currentScroll = scrollRef.current.scrollLeft;
-      const targetScroll = direction === 'left' 
-        ? currentScroll - scrollAmount 
-        : currentScroll + scrollAmount;
-      
-      scrollRef.current.scrollTo({
-        left: targetScroll,
-        behavior: 'smooth'
-      });
-    }
+  const rotate = (direction: 'left' | 'right') => {
+    const rotationStep = 360 / 10; // 36 degrees per step for 10 items
+    setRotationAngle(prev => 
+      direction === 'left' 
+        ? prev - rotationStep 
+        : prev + rotationStep
+    );
   };
 
   return (
@@ -65,7 +59,7 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
             <Button
               variant="outline"
               size="icon"
-              onClick={() => scroll('left')}
+              onClick={() => rotate('left')}
               className="bg-card/50 border-border/50 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -73,7 +67,7 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
             <Button
               variant="outline"
               size="icon"
-              onClick={() => scroll('right')}
+              onClick={() => rotate('right')}
               className="bg-card/50 border-border/50 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300"
             >
               <ChevronRight className="w-4 h-4" />
@@ -83,30 +77,46 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
 
         {/* Scripts by Genre */}
         {Object.entries(groupedScripts).map(([genre, genreScripts]) => (
-          <div key={genre} className="mb-16">
-            <h3 className="font-cinematic text-2xl font-bold text-primary text-center mb-6">
+          <div key={genre} className="mb-32">
+            <h3 className="font-cinematic text-2xl font-bold text-primary text-center mb-12">
               {genre}
             </h3>
-            <div 
-              ref={scrollRef}
-              className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
-              style={{
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none',
-                scrollBehavior: 'smooth'
-              }}
-            >
-              {genreScripts.map((script) => (
-                <div 
-                  key={script.id} 
-                  className="flex-shrink-0 transition-all duration-300 hover:scale-105 hover:shadow-glow"
-                >
-                  <ScriptCard
-                    {...script}
-                    onClick={() => onScriptSelect(script)}
-                  />
-                </div>
-              ))}
+            
+            {/* Wheel Container */}
+            <div className="relative w-full h-[600px] flex items-center justify-center">
+              <div 
+                className="relative w-[500px] h-[500px] transition-transform duration-700 ease-in-out"
+                style={{
+                  transform: `rotate(${rotationAngle}deg)`
+                }}
+              >
+                {genreScripts.map((script, index) => {
+                  const angle = (360 / genreScripts.length) * index;
+                  const radius = 200; // Distance from center
+                  const x = Math.cos((angle * Math.PI) / 180) * radius;
+                  const y = Math.sin((angle * Math.PI) / 180) * radius;
+                  
+                  return (
+                    <div 
+                      key={script.id}
+                      className="absolute w-[280px] transition-all duration-300 hover:scale-110 hover:z-10"
+                      style={{
+                        left: '50%',
+                        top: '50%',
+                        transform: `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(${-rotationAngle}deg)`,
+                        transformOrigin: 'center'
+                      }}
+                    >
+                      <div className="hover:shadow-glow">
+                        <ScriptCard
+                          {...script}
+                          onClick={() => onScriptSelect(script)}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         ))}
