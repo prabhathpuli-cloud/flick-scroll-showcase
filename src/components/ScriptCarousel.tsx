@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef } from "react";
 import ScriptCard from "./ScriptCard";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -20,7 +20,7 @@ interface ScriptCarouselProps {
 }
 
 const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
-  const [rotationAngle, setRotationAngle] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   // Group scripts by genre
   const groupedScripts = scripts.reduce((acc, script) => {
@@ -31,13 +31,19 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
     return acc;
   }, {} as Record<string, Script[]>);
 
-  const rotate = (direction: 'left' | 'right') => {
-    const rotationStep = 360 / 10; // 36 degrees per step for 10 items
-    setRotationAngle(prev => 
-      direction === 'left' 
-        ? prev - rotationStep 
-        : prev + rotationStep
-    );
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 340; // Card width + gap
+      const currentScroll = scrollRef.current.scrollLeft;
+      const targetScroll = direction === 'left' 
+        ? currentScroll - scrollAmount 
+        : currentScroll + scrollAmount;
+      
+      scrollRef.current.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
@@ -59,7 +65,7 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
             <Button
               variant="outline"
               size="icon"
-              onClick={() => rotate('left')}
+              onClick={() => scroll('left')}
               className="bg-card/50 border-border/50 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -67,7 +73,7 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
             <Button
               variant="outline"
               size="icon"
-              onClick={() => rotate('right')}
+              onClick={() => scroll('right')}
               className="bg-card/50 border-border/50 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300"
             >
               <ChevronRight className="w-4 h-4" />
@@ -77,53 +83,30 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
 
         {/* Scripts by Genre */}
         {Object.entries(groupedScripts).map(([genre, genreScripts]) => (
-          <div key={genre} className="mb-32">
-            <h3 className="font-cinematic text-2xl font-bold text-primary text-center mb-12">
+          <div key={genre} className="mb-16">
+            <h3 className="font-cinematic text-2xl font-bold text-primary text-center mb-6">
               {genre}
             </h3>
-            
-            {/* 3D Donut Wheel Container */}
-            <div className="relative w-full h-[600px] flex items-center justify-center" style={{ perspective: '1200px' }}>
-              <div 
-                className="relative w-[400px] h-[400px] transition-transform duration-700 ease-in-out preserve-3d"
-                style={{
-                  transform: `rotateX(-10deg) rotateY(${rotationAngle}deg)`,
-                  transformStyle: 'preserve-3d'
-                }}
-              >
-                {genreScripts.map((script, index) => {
-                  const angle = (360 / genreScripts.length) * index;
-                  const radius = 300; // Distance from center
-                  const x = Math.cos((angle * Math.PI) / 180) * radius;
-                  const z = Math.sin((angle * Math.PI) / 180) * radius;
-                  
-                  // Calculate scale based on z position for depth effect
-                  const scale = 0.7 + (z + radius) / (radius * 4);
-                  const opacity = 0.6 + (z + radius) / (radius * 2);
-                  
-                  return (
-                    <div 
-                      key={script.id}
-                      className="absolute w-[280px] transition-all duration-300 hover:scale-110"
-                      style={{
-                        left: '50%',
-                        top: '50%',
-                        transform: `translate(-50%, -50%) translate3d(${x}px, 0px, ${z}px) scale(${scale})`,
-                        transformOrigin: 'center',
-                        opacity: opacity,
-                        zIndex: Math.round(z + radius)
-                      }}
-                    >
-                      <div className="hover:shadow-glow">
-                        <ScriptCard
-                          {...script}
-                          onClick={() => onScriptSelect(script)}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+            <div 
+              ref={scrollRef}
+              className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
+              style={{
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                scrollBehavior: 'smooth'
+              }}
+            >
+              {genreScripts.map((script) => (
+                <div 
+                  key={script.id} 
+                  className="flex-shrink-0 transition-all duration-300 hover:scale-105 hover:shadow-glow"
+                >
+                  <ScriptCard
+                    {...script}
+                    onClick={() => onScriptSelect(script)}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         ))}
