@@ -82,29 +82,36 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
               {genre}
             </h3>
             
-            {/* Wheel Container */}
-            <div className="relative w-full h-[600px] flex items-center justify-center">
+            {/* 3D Donut Wheel Container */}
+            <div className="relative w-full h-[600px] flex items-center justify-center" style={{ perspective: '1200px' }}>
               <div 
-                className="relative w-[500px] h-[500px] transition-transform duration-700 ease-in-out"
+                className="relative w-[400px] h-[400px] transition-transform duration-700 ease-in-out preserve-3d"
                 style={{
-                  transform: `rotate(${rotationAngle}deg)`
+                  transform: `rotateX(-10deg) rotateY(${rotationAngle}deg)`,
+                  transformStyle: 'preserve-3d'
                 }}
               >
                 {genreScripts.map((script, index) => {
                   const angle = (360 / genreScripts.length) * index;
-                  const radius = 200; // Distance from center
+                  const radius = 300; // Distance from center
                   const x = Math.cos((angle * Math.PI) / 180) * radius;
-                  const y = Math.sin((angle * Math.PI) / 180) * radius;
+                  const z = Math.sin((angle * Math.PI) / 180) * radius;
+                  
+                  // Calculate scale based on z position for depth effect
+                  const scale = 0.7 + (z + radius) / (radius * 4);
+                  const opacity = 0.6 + (z + radius) / (radius * 2);
                   
                   return (
                     <div 
                       key={script.id}
-                      className="absolute w-[280px] transition-all duration-300 hover:scale-110 hover:z-10"
+                      className="absolute w-[280px] transition-all duration-300 hover:scale-110"
                       style={{
                         left: '50%',
                         top: '50%',
-                        transform: `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(${-rotationAngle}deg)`,
-                        transformOrigin: 'center'
+                        transform: `translate(-50%, -50%) translate3d(${x}px, 0px, ${z}px) scale(${scale})`,
+                        transformOrigin: 'center',
+                        opacity: opacity,
+                        zIndex: Math.round(z + radius)
                       }}
                     >
                       <div className="hover:shadow-glow">
