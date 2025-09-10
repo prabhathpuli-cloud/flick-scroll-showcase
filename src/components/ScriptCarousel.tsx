@@ -84,9 +84,12 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
         {/* Scripts by Genre */}
         {Object.entries(groupedScripts).map(([genre, genreScripts]) => (
           <div key={genre} className="mb-16">
+            <h3 className="font-cinematic text-2xl font-bold text-primary text-center mb-6">
+              {genre}
+            </h3>
             <div 
               ref={scrollRef}
-              className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 mb-6"
+              className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
               style={{
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
@@ -105,9 +108,6 @@ const ScriptCarousel = ({ scripts, onScriptSelect }: ScriptCarouselProps) => {
                 </div>
               ))}
             </div>
-            <h3 className="font-cinematic text-2xl font-bold text-primary text-center">
-              {genre}
-            </h3>
           </div>
         ))}
       </div>
